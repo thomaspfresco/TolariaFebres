@@ -1,12 +1,13 @@
 let number = 0;
 let rangeNum = 9999;
-let auxFrames = 0;
-let auxFrames2 = 0;
+let instant = 0;
+let instant2 = 0;
 let strAux;
 let str;
 let check = false;
 let img;
 let ratio;
+let interval = 20;
 
 function windowResized() {
     resizeCanvas(windowWidth, windowWidth);
@@ -28,10 +29,11 @@ function draw() {
     background(0,48,91);
     image(img, windowWidth/2-img.width*ratio/2, windowHeight/10, img.width*ratio, img.height*ratio);
     if (check) {
-    if (frameCount - auxFrames < 250) {
-        if (frameCount - auxFrames2 > 2) {
+    if (millis() - instant < 5000) {
+        if (millis() - instant2 > interval) {
             genNum();
-            auxFrames2 = frameCount;
+            instant2 = millis();
+            //interval += 5;
         }
     }
     text(str,windowWidth/2,windowHeight/2);
@@ -50,6 +52,7 @@ function genNum() {
 
 function mouseClicked() {
         check = true;
-        auxFrames = frameCount;
+        instant = millis();
         windowResized(windowWidth, windowWidth);
+        //interval = 1;
 }
