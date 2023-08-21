@@ -26,6 +26,7 @@ function setup() {
 }
 
 function draw() {
+    document.body.style.cursor = "none";
     background(0,48,91);
     image(img, windowWidth/2-img.width*ratio/2, windowHeight/10, img.width*ratio, img.height*ratio);
     if (check) {
@@ -50,9 +51,14 @@ function genNum() {
     else str = strAux;
 }
 
+function keyReleased() {
+    check = true;
+    instant = millis();
+    windowResized(windowWidth, windowWidth);
+}
+
 function mouseClicked() {
-        check = true;
-        instant = millis();
-        windowResized(windowWidth, windowWidth);
-        //interval = 1;
+    check = true;
+    instant = millis();
+    windowResized(windowWidth, windowWidth);
 }
